@@ -1,0 +1,8 @@
+/opt/tools/autosys-monitoring/log/autosys-proc-mon.log {
+        weekly
+        copytruncate
+        rotate 4
+        compress
+        delaycompress
+        notifempty
+}

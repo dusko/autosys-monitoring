@@ -1,0 +1,47 @@
+NAME
+    autosys-proc-mon.pl - monitor CA Autosys Services
+
+SYNOPSIS
+    autosys-proc-mon.pl [OPTION]
+
+    Options:
+
+            -h,--help               print this help message
+            -l,--list               list CA Services Status Report
+            -n,--no-mail            disable email notifications
+
+FILES
+  ../bin/autosys-proc-mon.pl
+    Script for AutoSys service monitoring.
+
+  ../conf/exclude-list.cfg
+    Configuration file what contains list of all service names what will be
+    excluded from monitoring. One service name per line.
+
+    Example:
+
+  ../data/arming-status.dat
+    This datafile holds the value of the "arming" counter. If we detect that
+    monitored service is not running we send an alert email. To don't
+    generate alert email each polling cycle next email will be send if
+    counter will be set to zero value.
+
+    *       Counter is set to 0 if all services are up and running.
+
+    *       If monitored service goes down, alert email is send and counter
+            is set to default value (like 12).
+
+    *       If service is still down we decrement counter by 1 each polling
+            cycle until it reach zero and new alert email can be send.
+
+    *       We can say that counter represent quiet period (like 60 min)
+            when no new mail is send even if monitored service is down.
+
+    DON'T edit this file manually as it is fully managed by the script !!!
+
+  ../log/autosys-proc-mon.log
+    Script log all activities to this file.
+
+AUTHOR
+    Dusan Sovic < dusan.sovic@gmail.com >
+
